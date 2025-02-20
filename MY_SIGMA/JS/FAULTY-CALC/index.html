@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faulty Calculator</title>
+</head>
+<body>
+  <script>
+    function calculator() {
+      // Get input from user and convert them to numbers.
+      let firstNumber = Number(prompt("Enter first number"));
+      let secondNumber = Number(prompt("Enter second number"));
+      
+      // Choose operation: 1 for (+), 2 for (-), 3 for (/), 4 for (*)
+      let choice = prompt("Choose operation: 1 for (+), 2 for (-), 3 for (/), 4 for (*)");
+      
+      // Generate a random number between 0 and 1.
+      let a = Math.random();
+      
+      // Perform the operation with a 10% chance of being faulty.
+      operator(firstNumber, secondNumber, choice, a);
+    }
+    
+    function operator(firstNumber, secondNumber, choice, a) {
+      let result;
+      
+      // For a 10% chance, check if the random number is less than 0.1.
+      if (choice == 1) {
+        if (a < 0.1) {
+          result = firstNumber - secondNumber; // Faulty: subtraction instead of addition.
+          console.log("Faulty operation: subtraction instead of addition.");
+        } else {
+          result = firstNumber + secondNumber; // Normal addition.
+          console.log("Normal operation: addition.");
+        }
+      } else if (choice == 2) {
+        if (a < 0.1) {
+          result = firstNumber / secondNumber; // Faulty: division instead of subtraction.
+          console.log("Faulty operation: division instead of subtraction.");
+        } else {
+          result = firstNumber - secondNumber; // Normal subtraction.
+          console.log("Normal operation: subtraction.");
+        }
+      } else if (choice == 3) {
+        if (a < 0.1) {
+          result = firstNumber ** secondNumber; // Faulty: exponentiation instead of division.
+          console.log("Faulty operation: exponentiation instead of division.");
+        } else {
+          result = firstNumber / secondNumber; // Normal division.
+          console.log("Normal operation: division.");
+        }
+      } else if (choice == 4) {
+        if (a < 0.1) {
+          result = firstNumber + secondNumber; // Faulty: addition instead of multiplication.
+          console.log("Faulty operation: addition instead of multiplication.");
+        } else {
+          result = firstNumber * secondNumber; // Normal multiplication.
+          console.log("Normal operation: multiplication.");
+        }
+      } else {
+        console.log("Invalid operator choice.");
+        return;
+      }
+      
+      console.log("Random number a:", a);
+      console.log("Result:", result);
+      alert("Result: " + result);
+    }
+  </script>
+  
+  <button onclick="calculator()">Click to calculate</button>
+</body>
+</html>
